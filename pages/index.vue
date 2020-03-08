@@ -21,11 +21,12 @@
                 <b-checkbox v-model="selectedTypes"
                   :native-value="type" class="is-warning"> {{ type }}</b-checkbox>
               </div>
+              <button @click=fetchProducts()> bootton </button>
             </div>
           </div>
           <div class="column">
             <div class="columns is-multiline is-variable is-2">
-              <div class="column is-one-third" v-for="product in products" :key="product._id">
+              <div class="column is-one-third" v-for="(product, index) in products" :key="index">
                 <product-item :product="product"></product-item>
               </div>
             </div>
@@ -37,31 +38,33 @@
 </template>
 
 <script>
-import cosmic from '@/plugins/cosmic'
-import productItem from '@/components/product-item'
+import { mapGetters } from 'vuex'
+import ProductItem from '@/components/ProductItem.vue'
 export default {
   components : {
-    productItem
+    ProductItem
   },
   data () {
     return {
       types: ['painted', 'pattern', 'gradient'],
       selectedTypes: [],
-      hero: this.$store.state.globals[0].metadata.hero.imgix_url
+      hero: '/images/hero.jpg'
     }
   },
   computed: {
     products() {
       return this.$store.state.products.filter(el =>
         this.selectedTypes.length
-        ? this.selectedTypes.includes(el.metadata.type)
+        ? this.selectedTypes.includes(el.value)
         : el
       )
-    }
+    },
+    ...mapGetters(['products'])
   },
-
-  async fetch({ store, params }) {
-    await store.dispatch('getProducts')
+  methods: {
+    fetchProducts() {
+      this.$store.dispatch('getProducts')
+    }
   }
 }
 </script>

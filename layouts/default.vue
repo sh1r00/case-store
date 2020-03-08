@@ -20,18 +20,17 @@
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
-          Proudly Powered By <a href="https://cosmicjs.com" class="has-text-dark"><strong>Cosmic JS</strong></a>
+          Proudly Powered By <a href="https://cockpit.com" class="has-text-dark"><strong>Cockpit JS</strong></a>
         </div>
       </div>
     </footer>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
   export default {
     computed: {
-      cartTotal () {
-        return this.$store.state.cartTotal
-      }
+      ...mapGetters(['cartTotal'])
     }
   }
 </script>

@@ -5,10 +5,10 @@
         {{ product.title }}
       </p>
       <figure class="image product-image" @click="modalActive = true">
-        <img :src="product.metadata.image.imgix_url" alt="">
+        <img :src="product.image.path" alt="">
       </figure><br>
       <button class="button is-link is-outlined is-rounded is-block" @click="addToCart(product)">
-        ${{product.metadata.price}} - Add to Cart
+        ${{product.price}} - Add to Cart
       </button>
     </div>
 
@@ -18,7 +18,7 @@
           <div class="columns">
             <div class="column is-hidden-mobile">
               <figure class="image modal-image">
-                <img :src="product.metadata.image.imgix_url" alt="">
+                <img :src="product.image.path" alt="">
               </figure>
             </div>
             <div class="column">
@@ -28,7 +28,7 @@
                 </p>
                 <p class="description" v-html="product.content"></p>
                 <button class="button is-link is-outlined is-rounded is-block " @click="addToCart(product)">
-                  ${{product.metadata.price}} - Add to Cart
+                  ${{product.price}} - Add to Cart
                 </button>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     addToCart(item) {
-      this.$store.commit('addToCart', item)
+      this.$store.commit('ADD_TO_CART', item)
       this.$toast.open({
          message: 'Added to cart',
          type: 'is-success'

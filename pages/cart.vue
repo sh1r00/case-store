@@ -12,28 +12,28 @@
             <article class="media cart-item">
               <div class="media-left">
                 <figure class="image cart-image is-128x128">
-                  <img :src="product.metadata.image.imgix_url" alt="">
+                  <img :src="product.image.path" alt="">
                 </figure>
               </div>
               <div class="media-content">
                 <div class="content">
                   <h2 class="is-size-4 has-text-weight-bold">{{ product.title }}</h2>
                   <p class="is-size-5">
-                    ${{product.metadata.price}} x {{ product.count }}
+                    ${{product.price}} x {{ product.count }}
                   </p>
                   <button class="button is-outlined is-danger is-small is-rounded" @click="removeItem(product)">Remove Item</button>
                 </div>
               </div>
               <div class="media-right">
                 <div class="content">
-                  <h2 class="is-size-4 has-text-weight-bold">$ {{ product.metadata.price * product.count }}</h2>
+                  <h2 class="is-size-4 has-text-weight-bold">$ {{ product.price * product.count }}</h2>
                 </div>
               </div>
             </article>
           </div>
           <hr v-if="cartTotal">
           <h1 class="title has-text-centered" v-if="cartTotal"> Total : ${{ totalCost }}</h1>
-          <button class="button is-medium is-fullwidth is-outlined is-rounded is-link checkout-button" :class="{'is-loading': submitted}" @click="checkout" v-if="cartTotal">Checkout</button>
+          <button class="button is-medium is-fullwidth is-outlined is-rounded is-link checkout-button" :class="{'is-loading': submited}" @click="checkout" v-if="cartTotal">Checkout</button>
           <div class="box has-text-centered" v-if="!cartTotal">
             <article class="emptyCart">
               <h1 class="title">Cart is empty</h1>
@@ -47,35 +47,31 @@
 
 <script>
 import axios from 'axios'
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
   data () {
     return {
       success: false
     }
   },
   computed: {
-    cart () {
-      return this.$store.getters.cart
-    },
-    cartTotal () {
-      return this.$store.state.cartTotal
-    },
+    ...mapGetters(['cart', 'cartTotal']),
     totalCost () {
       return Object.values(this.cart)
-        .reduce((sum, el) => sum + (el.count * el.metadata.price), 0)
+        .reduce((sum, el) => sum + (el.count * el.price), 0)
         .toFixed(2)
     }
   },
   methods: {
     removeItem(item) {
-      this.$store.commit('removeItem', item)
+      this.$store.commit('REMOVE_ITEM', item)
       this.$toast.open({
            message: 'Removed item from cart',
            type: 'is-danger'
        })
     },
-    checkout () {
+    checkout() {
       let amount = this.totalCost * 100
       let items = Object.keys(this.cart).map((key, index) => {
         return {
@@ -108,9 +104,9 @@ export default {
                    message: 'Order placed successfully',
                    type: 'is-success'
                })
-              this.$store.commit('clearCart')
+              this.$store.commit('CLEAR_CART')
             }).catch(err => {
-              this.submitted = false
+              this.submited = false
               console.log(err)
             })
         }

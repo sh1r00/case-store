@@ -5,7 +5,6 @@ const app = express()
 const bodyParser = require('body-parser')
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
-const api = require('./api')
 
 app.set('port', port)
 
@@ -18,9 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
-// Import api routes
-app.use('/api', api)
 
 async function start() {
   // Init Nuxt.js
