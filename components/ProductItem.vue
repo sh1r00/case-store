@@ -5,7 +5,7 @@
         {{ product.title }}
       </p>
       <figure class="image product-image" @click="modalActive = true">
-        <img :src="product.image.path" alt="">
+        <img :src="`http://heroku-cockpit.herokuapp.com/${product.image.path}`" alt="">
       </figure><br>
       <button class="button is-link is-outlined is-rounded is-block" @click="addToCart(product)">
         ${{product.price}} - Add to Cart
@@ -18,7 +18,7 @@
           <div class="columns">
             <div class="column is-hidden-mobile">
               <figure class="image modal-image">
-                <img :src="product.image.path" alt="">
+                <img :src="`http://heroku-cockpit.herokuapp.com/${product.image.path}`" alt="">
               </figure>
             </div>
             <div class="column">

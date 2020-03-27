@@ -21,7 +21,6 @@
                 <b-checkbox v-model="selectedTypes"
                   :native-value="type" class="is-warning"> {{ type }}</b-checkbox>
               </div>
-              <button @click=fetchProducts()> bootton </button>
             </div>
           </div>
           <div class="column">
@@ -46,7 +45,7 @@ export default {
   },
   data () {
     return {
-      types: ['painted', 'pattern', 'gradient'],
+      types: ['Painted', 'Pattern', 'Gradient'],
       selectedTypes: [],
       hero: '/images/hero.jpg'
     }
@@ -58,13 +57,10 @@ export default {
         ? this.selectedTypes.includes(el.value)
         : el
       )
-    },
-    ...mapGetters(['products'])
-  },
-  methods: {
-    fetchProducts() {
-      this.$store.dispatch('getProducts')
     }
+  },
+  created() {
+    this.$store.dispatch('getProducts')
   }
 }
 </script>
