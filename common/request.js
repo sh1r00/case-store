@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const baseUrl = 'http://heroku-cockpit.herokuapp.com'
+const baseUrl = 'https://heroku-cockpit.herokuapp.com'
 const apiUrl = 'api/collections'
 const apiToken = '0e7dca289e462780d9641654702558'
 const collectionName = 'vueEcommerce'
