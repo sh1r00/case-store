@@ -1,8 +1,8 @@
 {
-  "name": "cosmic-vuecommerce",
+  "name": "case-store",
   "version": "1.0.0",
-  "description": "E-commerce app with Nuxt and CosmicJS",
-  "author": "Muhammad Althaf",
+  "description": "E-commerce app with Nuxt and stripe",
+  "author": "sh1r00",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
