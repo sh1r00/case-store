@@ -20,7 +20,7 @@
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
-          Proudly Powered By <a href="https://cockpit.com" class="has-text-dark"><strong>Cockpit JS</strong></a>
+          Proudly Developed By <a href="https://cockpit.com" class="has-text-dark"><strong>sh1r00</strong></a>
         </div>
       </div>
     </footer>
