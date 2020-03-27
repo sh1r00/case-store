@@ -12,7 +12,7 @@
             <article class="media cart-item">
               <div class="media-left">
                 <figure class="image cart-image is-128x128">
-                  <img :src="product.image.path" alt="">
+                  <img :src="`https://heroku-cockpit.herokuapp.com/${product.image.path}`" alt="">
                 </figure>
               </div>
               <div class="media-content">

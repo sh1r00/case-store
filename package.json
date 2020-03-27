@@ -33,7 +33,7 @@
     "vue-stripe-checkout": "0.0.4"
   },
   "engines": {
-    "node": "= 11.10.1",
+    "node": "11.10.1",
     "npm": "6.7.0"
   }
 }
