@@ -34,7 +34,7 @@ function getProducts() {
   })
 }
 
-function addObjects() {
+function addForms(params) {
   return new Promise((resolve, reject) => {
     const endpoint =
       baseUrl +
@@ -45,10 +45,18 @@ function addObjects() {
       '?token=' +
       apiToken
     fetch(endpoint, {
-      method: 'get',
+      method: 'post',
       headers: {
         'Content-Type': 'application.json'
       },
+      body: {
+        "form": {
+          "type": params.type_slug,
+          "name": params.title,
+          "content": params.content,
+          "metafields": params.metafields
+        }
+      }
     })
       .then(response =>
         response.json().then(data => {
@@ -65,5 +73,5 @@ function addObjects() {
 
 export default {
   getProducts,
-  addObjects
+  addForms
 }
