@@ -86,7 +86,7 @@ export default {
         amount: amount,
         token: (token) => {
           axios
-            .post('/api/charge', {
+            .post('/charge', {
               token: token.id,
               email: token.email,
               name: token.card.name,
