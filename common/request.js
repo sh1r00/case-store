@@ -49,21 +49,17 @@ function addForms(params) {
       headers: {
         'Content-Type': 'application.json'
       },
-      body: {
-        "form": {
-          "type": params.type_slug,
-          "name": params.title,
-          "content": params.content,
-          "metafields": params.metafields
+      body: JSON.stringify({
+        form: {
+          type: params.type_slug,
+          name: params.title,
+          content: params.content,
+          metafields: params.metafields
         }
-      }
+      })
     })
-      .then(response =>
-        response.json().then(data => {
-          console.log('response', data)
-          resolve(data)
-        })
-      )
+      .then(entry => entry.json)
+      .then(entry => console.losg(entry))
       .catch(error => {
         console.log(error)
         resolve(error)
