@@ -34,6 +34,36 @@ function getProducts() {
   })
 }
 
+function addObjects() {
+  return new Promise((resolve, reject) => {
+    const endpoint =
+      baseUrl +
+      '/' +
+      'api/forms/submit' +
+      collectionName +
+      'Receipts' +
+      '?token=' +
+      apiToken
+    fetch(endpoint, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application.json'
+      },
+    })
+      .then(response =>
+        response.json().then(data => {
+          console.log('response', data)
+          resolve(data)
+        })
+      )
+      .catch(error => {
+        console.log(error)
+        resolve(error)
+      })
+  })
+}
+
 export default {
-  getProducts
+  getProducts,
+  addObjects
 }

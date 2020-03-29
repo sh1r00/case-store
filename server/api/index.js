@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const cosmic = require('../../plugins/cosmic')
+const Request = require('../../common/request')
 
 router.post('/charge', (req, res) => {
   let { token, email, name, address, city, amount, items } = req.body
@@ -39,7 +39,7 @@ router.post('/charge', (req, res) => {
         }
       ]
     }
-    cosmic.addObject(params).then(data => {
+    Request.addObject(params).then(data => {
       console.log(data)
       res.json({success: true})
     }).catch(err => {
