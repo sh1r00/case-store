@@ -39,7 +39,7 @@ router.post('/charge', (req, res) => {
         }
       ]
     }
-    Request.addObject(params).then(data => {
+    Request.addForms(params).then(data => {
       console.log(data)
       res.json({success: true})
     }).catch(err => {
