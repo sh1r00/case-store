@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Build Setup
 
 ``` bash
