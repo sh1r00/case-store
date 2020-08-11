@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section class="hero is-medium" :style="{ backgroundImage: `url(${hero})` }">
+    <section  style="margin-top: 5em;"  class="hero is-medium" :style="{ backgroundImage: `url(${hero})` }">
       <div class="hero-body">
         <div class="container">
           <h1 class="title"> Celebrate Uniquesness</h1>

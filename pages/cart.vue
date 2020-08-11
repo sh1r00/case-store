@@ -1,6 +1,6 @@
 <template>
   <main>
-    <section class="section">
+    <section style="margin-top: 5em;" class="section">
       <div class="container">
         <nuxt-link to="/" class="back-to-shopping has-text-weight-bold"> &#8592; Back to shopping</nuxt-link>
         <div class="box">
@@ -12,7 +12,7 @@
             <article class="media cart-item">
               <div class="media-left">
                 <figure class="image cart-image is-128x128">
-                  <img :src="`https://heroku-cockpit.herokuapp.com/${product.image.path}`" alt="">
+                  <img :src="`https://heroku-cockpit.herokuapp.com${product.image.path}`" alt="">
                 </figure>
               </div>
               <div class="media-content">
@@ -52,7 +52,8 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      success: false
+      success: false,
+      submited: false
     }
   },
   computed: {
@@ -66,9 +67,8 @@ export default {
   methods: {
     removeItem(item) {
       this.$store.commit('REMOVE_ITEM', item)
-      this.$toast.open({
-           message: 'Removed item from cart',
-           type: 'is-danger'
+      this.$toast.info('Removed item from cart', {
+           duration: 800
        })
     },
     checkout() {
@@ -100,14 +100,15 @@ export default {
               }
             }).then(res => {
               this.success = true
-              this.$toast.open({
-                   message: 'Order placed successfully',
-                   type: 'is-success'
-               })
+              this.$toast.success('Order placed successfully', {
+                duration: 800
+              })
               this.$store.commit('CLEAR_CART')
             }).catch(err => {
               this.submited = false
-              console.log(err)
+              this.$toast.error('Order could not be placed', {
+                duration: 1000
+              })
             })
         }
       });
