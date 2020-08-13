@@ -1,9 +1,9 @@
 import _ from 'lodash'
 
-const baseUrl = 'https://heroku-cockpit.herokuapp.com'
-const apiUrl = 'api/collections'
-const apiToken = '0e7dca289e462780d9641654702558'
-const collectionName = 'vueEcommerce'
+const baseUrl = process.env.BASE_URL
+const apiUrl = process.env.API_URL
+const apiToken = process.env.API_TOKEN
+const collectionName = process.env.COLLECTION_NAME
 
 function getProducts() {
   return new Promise((resolve, reject) => {
