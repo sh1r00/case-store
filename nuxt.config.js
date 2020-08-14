@@ -3,7 +3,13 @@ const env = require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
-  env: env.parsed,
+  env: {
+    BASE_URL: 'https://heroku-cockpit.herokuapp.com',
+    API_URL: 'api/collections',
+    API_TOKEN: '0e7dca289e462780d9641654702558',
+    COLLECTION_NAME: 'vueEcommerce',
+    STRIPE_PUBLIC_KEY: ''
+  },
 
   /*
   ** Headers of the page
