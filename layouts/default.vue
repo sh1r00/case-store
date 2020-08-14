@@ -51,7 +51,6 @@ import debounce from '~/components/utils/debounce.js'
     },
     methods: {
       handleScroll(event) {
-        console.log('scrolling ', window.scrollY)
         if (window.scrollY > 5) {
           this.navEffect.cart = 'inline'
           this.navEffect.navHeight = 'auto'

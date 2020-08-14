@@ -81,7 +81,6 @@ export default {
           slug: this.cart[key].slug
         }
       })
-      console.log(items)
       this.$checkout.open({
         amount: amount,
         token: (token) => {
